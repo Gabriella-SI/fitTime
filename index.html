@@ -2,203 +2,161 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FIT.TIME 24H VIP — A academia mais moderna do Centro de Curitiba. Equipamentos de ponta, Rooftop e treino 24 horas.">
-    <title>FIT.TIME 24H VIP | Cyber Gym Curitiba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="FIT.TIME — Academia Premium no Centro de Curitiba. Esqueça as academias comuns. Musculação, Rooftop, Pilates, Muay Thai e Alta Performance.">
+    <title>FIT.TIME | Spatial Digital Gym Experience — Curitiba</title>
 
-    <!-- Google Fonts: Outfit (Moderna/Técnica) + Syne (Editorial/Impacto) -->
+    <!-- Google Fonts: Syne (Brutalista/Editorial) + Outfit (Técnica/Geométrica) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome Pro / Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ==========================================================================
-           1. VARIÁVEIS & IDENTIDADE VISUAL TECH
+           1. VARIÁVEIS, RESET E SETUP 3D
            ========================================================================== */
         :root {
-            --bg-void: #050608;
-            --bg-card: rgba(18, 20, 29, 0.65);
-            --bg-card-border: rgba(255, 255, 255, 0.1);
-            --accent-neon: #3b82f6;
-            --accent-glow: rgba(59, 130, 246, 0.4);
-            --accent-purple: #8b5cf6;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --font-main: 'Outfit', sans-serif;
+            --bg-dark: #040507;
+            --bg-surface: #0a0c10;
+            --primary-orange: #ff3b00;
+            --primary-orange-glow: rgba(255, 59, 0, 0.4);
+            --accent-cyan: #00f0ff;
+            --text-main: #ffffff;
+            --text-muted: #808a9d;
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --border-highlight: rgba(255, 255, 255, 0.25);
+            --glass-surface: rgba(14, 17, 23, 0.55);
+            --glass-mirror: rgba(255, 255, 255, 0.03);
             --font-display: 'Syne', sans-serif;
-            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            --max-width: 1380px;
+            --font-body: 'Outfit', sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
-            background-color: var(--bg-void);
-            color: var(--text-primary);
-            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
         body {
             background-image: 
-                radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 85% 60%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
-            line-height: 1.4;
+                radial-gradient(circle at 10% 10%, rgba(255, 59, 0, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Efeito Noise Grain Discreto */
+        .grain-layer {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.025;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
 
         .container {
-            max-width: var(--max-width);
+            max-width: 1440px;
             margin: 0 auto;
             padding: 0 2rem;
+            position: relative;
         }
 
-        /* Glassmorphism Flutuante */
-        .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--bg-card-border);
-            border-radius: 4px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            transition: var(--transition);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.15);
-        }
-
-        /* ==========================================================================
-           2. ROLAMENTO CONTINUO (LETREIRO / TICKER)
-           ========================================================================== */
-        .ticker-wrap {
-            width: 100%;
-            overflow: hidden;
-            background: #090b10;
-            border-top: 1px solid var(--bg-card-border);
-            border-bottom: 1px solid var(--bg-card-border);
-            padding: 1.2rem 0;
-            white-space: nowrap;
-        }
-
-        .ticker-move {
-            display: inline-block;
-            animation: ticker 25s linear infinite;
-        }
-
-        .ticker-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 2rem;
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255, 255, 255, 0.4);
-            margin-right: 2rem;
-        }
-
-        .ticker-item span.highlight {
-            color: var(--accent-neon);
-        }
-
-        @keyframes ticker {
-            0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
-        }
-
-        /* ==========================================================================
-           3. BOTÕES TECH
-           ========================================================================== */
-        .btn-tech {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.2rem 2.5rem;
-            font-family: var(--font-main);
-            font-size: 0.9rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #000;
-            background: #fff;
-            border: none;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: var(--transition);
+        /* Glassmorphism & Espelhamento 3D */
+        .glass-panel {
+            background: var(--glass-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 8px;
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: border-color 0.4s var(--ease-out), transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
             position: relative;
             overflow: hidden;
         }
 
-        .btn-tech:hover {
-            background: var(--accent-neon);
-            color: #fff;
-            box-shadow: 0 0 30px var(--accent-glow);
-            transform: translateY(-3px);
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.08) 50%, transparent 55%);
+            transform: rotate(25deg);
+            pointer-events: none;
+            transition: transform 0.8s ease;
         }
 
-        .btn-whatsapp-floating {
-            position: fixed;
-            bottom: 2.5rem;
-            right: 2.5rem;
-            width: 65px;
-            height: 65px;
-            background: #25D366;
-            color: #fff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.4);
-            z-index: 999;
-            transition: var(--transition);
+        .glass-panel:hover::before {
+            transform: rotate(25deg) translate(20%, 20%);
         }
 
-        .btn-whatsapp-floating:hover {
-            transform: scale(1.1) rotate(8deg);
+        .glass-panel:hover {
+            border-color: var(--border-highlight);
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.8),
+                0 0 30px rgba(255, 59, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
 
         /* ==========================================================================
-           4. HEADER FLUTUANTE
+           2. HEADER FLUTUANTE (CÁPSULA MIRROR)
            ========================================================================== */
-        .header {
+        .header-capsule {
             position: fixed;
             top: 2rem;
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 4rem);
-            max-width: var(--max-width);
+            max-width: 1200px;
             z-index: 1000;
-            padding: 1rem 2rem;
-        }
-
-        .nav-container {
+            padding: 0.8rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: all 0.4s var(--ease-out);
         }
 
-        .logo-tech {
+        .header-capsule.scrolled {
+            top: 1rem;
+            padding: 0.6rem 1.5rem;
+            background: rgba(6, 8, 12, 0.85);
+            border-color: rgba(255, 59, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+        }
+
+        .brand-logo {
             font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .logo-tech span {
-            color: var(--accent-neon);
+        .brand-logo .dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-orange);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--primary-orange-glow);
         }
 
         .nav-links {
@@ -208,45 +166,104 @@
         }
 
         .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-size: 0.8rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--text-secondary);
-            transition: var(--transition);
+            letter-spacing: 0.15em;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: var(--text-primary);
+            color: #fff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; width: 0; height: 2px;
+            background-color: var(--primary-orange);
+            transition: width 0.3s var(--ease-out);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-cta-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 1.8rem;
+            background: var(--primary-orange);
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 25px var(--primary-orange-glow);
+            transition: all 0.3s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-cta-primary:hover {
+            background: #fff;
+            color: var(--bg-dark);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .menu-hamburger {
+            display: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
         }
 
         /* ==========================================================================
-           5. HERO ESPELHADO & TELAS FLUTUANTES
+           3. HERO CINEMATOGRÁFICO & ELEMENTOS FLUTUANTES 3D
            ========================================================================== */
-        .hero {
+        .hero-viewport {
             min-height: 100vh;
             padding-top: 12rem;
             padding-bottom: 6rem;
             position: relative;
             display: flex;
             align-items: center;
+            perspective: 1200px;
         }
 
-        .hero-mirror-grid {
+        .hero-stage {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
             align-items: center;
+            position: relative;
+            z-index: 2;
         }
 
-        .hero-badge {
+        .hero-headline-group {
+            position: relative;
+            z-index: 5;
+        }
+
+        .badge-tag {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            padding: 0.5rem 1rem;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            color: var(--accent-neon);
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 59, 0, 0.1);
+            border: 1px solid rgba(255, 59, 0, 0.3);
+            border-radius: 30px;
+            color: var(--primary-orange);
             font-size: 0.75rem;
             font-weight: 800;
             letter-spacing: 0.2em;
@@ -254,641 +271,976 @@
             margin-bottom: 2rem;
         }
 
-        .hero-title-huge {
+        .hero-title {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            font-weight: 800;
+            font-size: clamp(3.2rem, 6.5vw, 6.2rem);
+            font-weight: 900;
             line-height: 0.95;
             text-transform: uppercase;
+            letter-spacing: -0.03em;
             margin-bottom: 2rem;
         }
 
-        .hero-title-huge .gradient-text {
-            background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-title-huge .neon-text {
-            color: var(--accent-neon);
-            text-shadow: 0 0 20px var(--accent-glow);
-        }
-
-        /* Composição de Telas Flutuantes */
-        .floating-screens-wrapper {
+        .hero-title .highlight-orange {
+            color: var(--primary-orange);
+            text-shadow: 0 0 30px var(--primary-orange-glow);
             position: relative;
-            width: 100%;
-            height: 580px;
+            display: inline-block;
         }
 
-        .screen-main {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 85%;
-            height: 480px;
-            object-fit: cover;
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            max-width: 540px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: #fff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            border: 1px solid var(--border-glass);
             border-radius: 4px;
+            transition: all 0.3s var(--ease-out);
+        }
+
+        .btn-cta-secondary:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* Fotografia Interativa com Parallax 3D e Elementos Suspensos */
+        .hero-visual-composition {
+            position: relative;
+            height: 680px;
+            width: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .hero-main-img {
+            width: 88%;
+            height: 580px;
+            object-fit: cover;
+            border-radius: 8px;
             filter: contrast(115%) brightness(90%);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 1px solid var(--border-glass);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.9);
+            transition: transform 0.2s ease-out;
         }
 
-        .screen-overlay-1 {
+        /* Cards e Objetos Flutuantes */
+        .float-node {
             position: absolute;
-            bottom: 2rem;
-            left: 0;
-            width: 280px;
+            z-index: 10;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            pointer-events: auto;
+        }
+
+        .node-1 {
+            top: 8%;
+            left: -5%;
+            padding: 1.5rem;
+            width: 220px;
+        }
+
+        .node-2 {
+            bottom: 12%;
+            right: -6%;
             padding: 1.8rem;
-            z-index: 3;
-            animation: float 6s ease-in-out infinite;
+            width: 260px;
         }
 
-        .screen-overlay-2 {
-            position: absolute;
-            top: -2rem;
+        .node-3 {
+            top: 45%;
+            right: -8%;
+            padding: 1rem 1.5rem;
+        }
+
+        .node-4 {
+            bottom: -2%;
             left: 10%;
-            padding: 1rem 1.8rem;
-            z-index: 3;
-            animation: float 8s ease-in-out infinite reverse;
+            padding: 1.2rem 2rem;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        .big-number-art {
+            font-family: var(--font-display);
+            font-size: clamp(8rem, 16vw, 16rem);
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 0.8;
         }
 
         /* ==========================================================================
-           6. SEÇÃO ESPELHADA (ARQUITETURA DAS SEÇÕES)
+           4. SEÇÃO DE IMPACTO TIPOGRÁFICO EDITORIAL
            ========================================================================== */
-        .mirror-section {
-            padding: 8rem 0;
+        .impact-statement-section {
+            padding: 12rem 0;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-surface) 50%, var(--bg-dark) 100%);
+        }
+
+        .statement-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .statement-title span {
+            display: inline-block;
+            opacity: 0.2;
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-out);
+        }
+
+        .statement-title span.active {
+            opacity: 1;
+            transform: translateY(0);
+            color: #fff;
+        }
+
+        .statement-title span.active-orange {
+            opacity: 1;
+            transform: translateY(0);
+            color: var(--primary-orange);
+            text-shadow: 0 0 40px var(--primary-orange-glow);
+        }
+
+        /* ==========================================================================
+           5. APRESENTAÇÃO FIT.TIME & LOCALIZAÇÃO CENTRO
+           ========================================================================== */
+        .about-location-section {
+            padding: 10rem 0;
             position: relative;
         }
 
-        .mirror-grid {
+        .about-mirror-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 6rem;
             align-items: center;
         }
 
-        .mirror-grid.reverse {
-            direction: rtl;
-        }
-
-        .mirror-grid.reverse * {
-            direction: ltr;
-        }
-
-        .section-tag {
-            font-size: 0.8rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--accent-purple);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .section-heading-big {
+        .about-text-block h2 {
             font-family: var(--font-display);
-            font-size: clamp(2.2rem, 4vw, 3.8rem);
-            font-weight: 800;
-            line-height: 1.05;
+            font-size: clamp(2.5rem, 4.5vw, 4.2rem);
+            font-weight: 900;
             text-transform: uppercase;
+            line-height: 1;
             margin-bottom: 2rem;
         }
 
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-        }
-
-        /* ==========================================================================
-           7. CARDS FLUTUANTES EM GRADE ASSIMÉTRICA (DIFERENCIAIS)
-           ========================================================================== */
-        .cards-floating-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .card-tech-item {
+        .address-box {
             padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
+            margin-top: 3rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(255, 59, 0, 0.03);
+            border-left: 3px solid var(--primary-orange);
         }
 
-        .card-tech-item .num {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 800;
-            color: rgba(255, 255, 255, 0.08);
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-        }
-
-        .card-tech-item h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .card-tech-item p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            font-weight: 300;
+        .address-icon {
+            font-size: 2rem;
+            color: var(--primary-orange);
         }
 
         /* ==========================================================================
-           8. DESTAQUE 24H BIG DISPLAY
+           6. ESTRUTURA SHOWCASE (PARALLAX & ASYMMETRIC GRID)
            ========================================================================== */
-        .display-24h-wrapper {
-            background: linear-gradient(180deg, rgba(9, 11, 16, 0.8) 0%, rgba(5, 6, 8, 1) 100%);
+        .structure-section {
             padding: 10rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .big-number-screen {
-            font-family: var(--font-display);
-            font-size: clamp(10rem, 28vw, 30rem);
-            font-weight: 800;
-            line-height: 0.75;
-            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.01) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            user-select: none;
-            margin: 2rem 0;
+        .structure-header {
+            margin-bottom: 6rem;
+        }
+
+        .asymmetric-gallery {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .gal-item-1 {
+            grid-column: span 7;
+            height: 520px;
+        }
+
+        .gal-item-2 {
+            grid-column: span 5;
+            height: 420px;
+            margin-top: -4rem;
+        }
+
+        .gal-item-3 {
+            grid-column: span 4;
+            height: 380px;
+            margin-top: 2rem;
+        }
+
+        .gal-item-4 {
+            grid-column: span 8;
+            height: 480px;
+            margin-top: -2rem;
+        }
+
+        .gal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+            filter: contrast(110%);
+            transition: transform 0.6s var(--ease-out);
+        }
+
+        .glass-card-hover:hover .gal-img {
+            transform: scale(1.05);
         }
 
         /* ==========================================================================
-           9. PLANOS & PREÇO IMPACTO
+           7. HIGHLIGHT ROOFTOP (TRANSIÇÃO MÁSCARA 3D)
            ========================================================================== */
-        .price-box-floating {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 5rem 3rem;
-            text-align: center;
+        .rooftop-experience-section {
+            padding: 12rem 0;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 59, 0, 0.12) 0%, transparent 60%);
+        }
+
+        .rooftop-stage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .rooftop-big-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .rooftop-img-frame {
+            position: relative;
+            height: 600px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .rooftop-img-frame img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 1s var(--ease-out);
+        }
+
+        .rooftop-img-frame:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ==========================================================================
+           8. MODALIDADES (GRID ASSIMÉTRICO & CARDS ESPELHADOS)
+           ========================================================================== */
+        .modalities-section {
+            padding: 10rem 0;
+        }
+
+        .modality-asymmetric-wrapper {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .mod-card-1 { grid-column: span 6; height: 450px; }
+        .mod-card-2 { grid-column: span 6; height: 450px; }
+        .mod-card-3 { grid-column: span 7; height: 400px; }
+        .mod-card-4 { grid-column: span 5; height: 400px; }
+
+        .mod-content {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(0deg, rgba(4, 5, 7, 0.95) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .mod-title {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==========================================================================
+           9. FLEXIBILIDADE DE HORÁRIO (TIMELINE FUTURISTA)
+           ========================================================================== */
+        .schedule-section {
+            padding: 10rem 0;
+            background: var(--bg-surface);
             position: relative;
         }
 
-        .price-tag-big {
+        .digital-clock-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 3rem;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--primary-orange);
+            box-shadow: 0 0 30px var(--primary-orange-glow);
+            border-radius: 6px;
             font-family: var(--font-display);
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary-orange);
+            margin-top: 3rem;
+        }
+
+        /* ==========================================================================
+           10. SEÇÃO HORIZONTAL SCROLL RECT
+           ========================================================================== */
+        .horizontal-scroll-container {
+            width: 100%;
+            overflow: hidden;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .horizontal-track {
+            display: flex;
+            gap: 4rem;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .horizon-card {
+            width: 420px;
+            height: 300px;
+            flex-shrink: 0;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .horizon-word {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.8;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+        }
+
+        .horizon-card:hover .horizon-word {
+            color: var(--primary-orange);
+            -webkit-text-stroke: 0px transparent;
+            text-shadow: 0 0 40px var(--primary-orange-glow);
+        }
+
+        /* ==========================================================================
+           11. PLANOS PREMIUM
+           ========================================================================== */
+        .plans-section {
+            padding: 10rem 0;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 5rem;
+        }
+
+        .plan-card-premium {
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .plan-card-premium.featured {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 50px rgba(255, 59, 0, 0.25);
+            transform: scale(1.04);
+        }
+
+        .plan-price {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 900;
             color: #fff;
             margin: 1.5rem 0;
         }
 
         /* ==========================================================================
-           10. FAQ ACCORDION TECH
+           12. CTA FINAL CINEMATOGRÁFICO
            ========================================================================== */
-        .faq-accordion-tech {
-            max-width: 850px;
-            margin: 4rem auto 0 auto;
+        .cta-final-section {
+            padding: 14rem 0 10rem 0;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(255, 59, 0, 0.15) 100%);
+            overflow: hidden;
         }
 
-        .faq-card {
-            margin-bottom: 1rem;
-            padding: 1.8rem 2.2rem;
-            cursor: pointer;
-        }
-
-        .faq-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .faq-body-content {
-            margin-top: 1.2rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            line-height: 1.7;
-            display: none;
-        }
-
-        .faq-card.active .faq-body-content {
-            display: block;
-        }
-
-        .faq-card.active {
-            border-color: var(--accent-neon);
+        .cta-big-headline {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 7.5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 0.95;
+            margin-bottom: 3rem;
         }
 
         /* ==========================================================================
-           11. FOOTER & RESPONSIVIDADE
+           13. RESPONSIVIDADE EXCLUSIVA MOBILE FIRST
            ========================================================================== */
-        .footer-tech {
-            padding: 5rem 0 3rem 0;
-            border-top: 1px solid var(--bg-card-border);
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        @media (max-width: 992px) {
-            .hero-mirror-grid, .mirror-grid, .cards-floating-grid {
+        @media (max-width: 1024px) {
+            .hero-stage, .about-mirror-grid, .rooftop-stage {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 4rem;
             }
 
-            .header {
-                width: calc(100% - 2rem);
-                top: 1rem;
-                padding: 0.8rem 1.2rem;
+            .hero-visual-composition {
+                height: 480px;
+            }
+
+            .hero-main-img {
+                width: 100%; height: 420px;
+            }
+
+            .asymmetric-gallery, .modality-asymmetric-wrapper, .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gal-item-1, .gal-item-2, .gal-item-3, .gal-item-4,
+            .mod-card-1, .mod-card-2, .mod-card-3, .mod-card-4 {
+                grid-column: span 1;
+                height: 350px;
+                margin-top: 0;
+            }
+
+            .plan-card-premium.featured {
+                transform: scale(1);
             }
 
             .nav-links {
                 display: none;
             }
 
-            .floating-screens-wrapper {
-                height: 400px;
+            .menu-hamburger {
+                display: block;
             }
 
-            .screen-main {
+            .header-capsule {
+                width: calc(100% - 2rem);
+                top: 1rem;
+            }
+
+            .node-1, .node-2, .node-3, .node-4 {
+                position: relative;
+                top: auto; bottom: auto; left: auto; right: auto;
                 width: 100%;
-                height: 350px;
+                margin-top: 1rem;
             }
 
-            .screen-overlay-1 {
-                width: 220px;
-                padding: 1rem;
-                bottom: 0;
-            }
-
-            .screen-overlay-2 {
-                top: -1rem;
-                left: 0;
+            .hero-visual-composition {
+                display: flex;
+                flex-direction: column;
+                height: auto;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- BOTÃO WHATSAPP FLUTUANTE -->
-    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20conhecer%20a%20FIT.TIME." class="btn-whatsapp-floating" target="_blank" aria-label="WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <div class="grain-layer"></div>
 
-    <!-- HEADER FLUTUANTE EM VIDRO -->
-    <header class="header glass-card">
-        <div class="nav-container">
-            <a href="#" class="logo-tech">FIT.TIME <span>24H</span></a>
+    <!-- HEADER CÁPSULA MIRROR FLUTUANTE -->
+    <header class="header-capsule glass-panel" id="mainHeader">
+        <a href="#" class="brand-logo">
+            FIT.TIME <div class="dot"></div>
+        </a>
 
-            <ul class="nav-links">
-                <li><a href="#inicio">Início</a></li>
-                <li><a href="#experiencia">A Experiência</a></li>
-                <li><a href="#estrutura">Estrutura</a></li>
-                <li><a href="#rooftop">Rooftop</a></li>
-                <li><a href="#planos">Planos</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
+        <ul class="nav-links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#sobre">A FIT.TIME</a></li>
+            <li><a href="#estrutura">Estrutura</a></li>
+            <li><a href="#rooftop">Rooftop</a></li>
+            <li><a href="#modalidades">Modalidades</a></li>
+            <li><a href="#planos">Planos</a></li>
+        </ul>
 
-            <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-tech" style="padding: 0.7rem 1.4rem; font-size: 0.75rem;">
-                QUERO TREINAR
-            </a>
+        <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-cta-primary">
+            QUERO TREINAR
+        </a>
+
+        <div class="menu-hamburger" id="menuToggle">
+            <i class="fas fa-bars"></i>
         </div>
     </header>
 
-    <!-- HERO ESPELHADO -->
-    <section class="hero" id="inicio">
+    <!-- HERO CINEMATOGRÁFICO COM ELEMENTOS FLUTUANTES 3D -->
+    <section class="hero-viewport" id="inicio">
+        <div class="big-number-art">24H</div>
         <div class="container">
-            <div class="hero-mirror-grid">
-                <!-- Lado Esquerdo: Conteúdo Editorial -->
-                <div>
-                    <span class="hero-badge">
-                        <i class="fas fa-bolt"></i> ACADEMIA FIT.TIME • CURITIBA
+            <div class="hero-stage">
+                
+                <!-- Headline e Comunicação Principal -->
+                <div class="hero-headline-group">
+                    <span class="badge-tag">
+                        <i class="fas fa-location-dot"></i> CENTRO DE CURITIBA
                     </span>
-                    <h1 class="hero-title-huge">
-                        <span class="gradient-text">Esqueça as academias</span><br>
-                        <span class="neon-text">comuns.</span>
+                    <h1 class="hero-title">
+                        ESQUEÇA<br>
+                        AS ACADEMIAS<br>
+                        <span class="highlight-orange">COMUNS.</span>
                     </h1>
-                    <p style="font-size: 1.2rem; color: var(--text-secondary); font-weight: 300; margin-bottom: 2.5rem; max-width: 520px;">
-                        Um ambiente diferenciado, equipamentos de alta performance e uma experiência pensada para quem leva o treino a sério.
+                    <p class="hero-subtitle">
+                        Um ambiente diferenciado, equipamentos de qualidade e uma experiência feita para quem leva seu treino a sério.
                     </p>
-
-                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
-                        <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-tech">
+                    <div class="hero-actions">
+                        <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-cta-primary">
                             QUERO TREINAR <i class="fas fa-arrow-right"></i>
                         </a>
-                        <div class="glass-card" style="padding: 0.8rem 1.5rem;">
-                            <span style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase;">PLANOS A PARTIR DE</span>
-                            <p style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800;">R$ 118,00</p>
+                        <a href="#sobre" class="btn-cta-secondary">
+                            CONHECER A FIT.TIME
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Composiçao Visual com Fotografia + Cards Flutuantes 3D -->
+                <div class="hero-visual-composition" id="heroScene">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" alt="Treino de Musculação FIT.TIME" class="hero-main-img" id="heroImg">
+
+                    <!-- Node Flutuante 1 -->
+                    <div class="float-node node-1 glass-panel" data-speed="0.05">
+                        <p style="font-size: 0.7rem; color: var(--primary-orange); font-weight: 800; letter-spacing: 0.15em;">PERFORMANCE</p>
+                        <p style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; margin-top: 0.2rem;">EQUIPAMENTOS</p>
+                    </div>
+
+                    <!-- Node Flutuante 2 -->
+                    <div class="float-node node-2 glass-panel" data-speed="-0.08">
+                        <div style="display: flex; items-center; gap: 0.5rem; color: #ffc107; font-size: 0.8rem; margin-bottom: 0.3rem;">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 900;">4,4 GOOGLE</p>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">280+ avaliações reais</p>
+                    </div>
+
+                    <!-- Node Flutuante 3 -->
+                    <div class="float-node node-3 glass-panel" data-speed="0.1">
+                        <span style="font-size: 0.75rem; font-weight: 800; color: var(--accent-cyan); text-transform: uppercase;">DIFERENCIAL</span>
+                        <p style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 900;">ROOFTOP</p>
+                    </div>
+
+                    <!-- Node Flutuante 4 -->
+                    <div class="float-node node-4 glass-panel" data-speed="-0.04">
+                        <p style="font-size: 0.75rem; color: var(--text-muted); uppercase;">STATUS</p>
+                        <p style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 900; color: #25d366;"><i class="fas fa-circle" style="font-size: 0.6rem; vertical-align: middle;"></i> VIP AMBIENTE</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE IMPACTO TIPOGRÁFICO EDITORIAL -->
+    <section class="impact-statement-section">
+        <div class="container">
+            <h2 class="statement-title" id="scrollStatement">
+                <span>SEU</span> <span>TREINO.</span><br>
+                <span>SEU</span> <span>RITMO.</span><br>
+                <span class="active-orange">SEU PRÓXIMO NÍVEL.</span>
+            </h2>
+        </div>
+    </section>
+
+    <!-- FIT.TIME & LOCALIZAÇÃO CENTRO -->
+    <section class="about-location-section" id="sobre">
+        <div class="container">
+            <div class="about-mirror-grid">
+                <div class="about-text-block">
+                    <span class="badge-tag">EXCLUSIVIDADE URBANA</span>
+                    <h2>ESQUEÇA AS ACADEMIAS COMUNS.</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem; font-weight: 300; line-height: 1.8;">
+                        A FIT.TIME foi concebida para quem busca mais do que um espaço de treino. Unimos arquitetura sofisticada, seleção rigorosa de equipamentos e uma atmosfera focada na sua disciplina diária.
+                    </p>
+
+                    <div class="address-box glass-panel">
+                        <i class="fas fa-map-location-dot address-icon"></i>
+                        <div>
+                            <p style="font-family: var(--font-display); font-size: 1.3rem; font-weight: 900;">Rua Visconde de Nácar, 1322</p>
+                            <p style="color: var(--text-muted); font-size: 0.95rem; margin-top: 0.2rem;">Centro — Curitiba / PR</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lado Direito: Telas Flutuantes Interativas -->
-                <div class="floating-screens-wrapper">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" alt="Musculação FIT.TIME" class="screen-main glass-card">
-                    
-                    <!-- Tela Flutuante 1 (Status 24H) -->
-                    <div class="screen-overlay-1 glass-card">
-                        <p style="font-size: 0.7rem; font-weight: 800; color: var(--accent-neon); text-transform: uppercase;">ACESSO VIP</p>
-                        <p style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 800;">24 HORAS</p>
-                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.3rem;">Treine no seu horário</p>
-                    </div>
-
-                    <!-- Tela Flutuante 2 (Avaliação Google) -->
-                    <div class="screen-overlay-2 glass-card">
-                        <div style="color: #ffc107; font-size: 0.8rem;">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                        </div>
-                        <span style="font-weight: 800; font-size: 0.9rem;">4,4 ★</span>
-                        <span style="font-size: 0.75rem; color: var(--text-secondary);"> (280 avaliações)</span>
+                <div style="position: relative;">
+                    <div class="glass-panel" style="padding: 1rem; height: 480px; overflow: hidden;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.22416954238!2d-49.2785!3d-25.4312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce471d2b5b5b5%3A0x0!2sRua+Visconde+de+N%C3%A1car%2C+1322+-+Centro%2C+Curitiba+-+PR!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg) contrast(120%);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LETREIRO ROLANTE 1 (TICKER INFOTAINMENT) -->
-    <div class="ticker-wrap">
-        <div class="ticker-move">
-            <div class="ticker-item"><span class="highlight">24 HORAS</span> • CURITIBA</div>
-            <div class="ticker-item">EQUIPAMENTOS DE QUALIDADE</div>
-            <div class="ticker-item"><span class="highlight">ROOFTOP EXCLUSIVO</span></div>
-            <div class="ticker-item">PLANOS A PARTIR DE R$ 118,00</div>
-            <div class="ticker-item"><span class="highlight">24 HORAS</span> • CURITIBA</div>
-            <div class="ticker-item">EQUIPAMENTOS DE QUALIDADE</div>
-            <div class="ticker-item"><span class="highlight">ROOFTOP EXCLUSIVO</span></div>
-            <div class="ticker-item">PLANOS A PARTIR DE R$ 118,00</div>
+    <!-- ESTRUTURA SHOWCASE (PARALLAX & GALERIA ASIMÉTRICA) -->
+    <section class="structure-section" id="estrutura">
+        <div class="container">
+            <div class="structure-header">
+                <span class="badge-tag">SHOWCASE VISUAL</span>
+                <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase;">
+                    O AMBIENTE À ALTURA<br>DO SEU POTENCIAL.
+                </h2>
+            </div>
+
+            <div class="asymmetric-gallery">
+                <div class="gal-item-1 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" alt="Equipamentos de Qualidade FIT.TIME" class="gal-img">
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; z-index: 3;">
+                        <span style="font-size: 0.75rem; color: var(--primary-orange); font-weight: 800; letter-spacing: 0.15em;">ALTA PERFORMANCE</span>
+                        <p style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;">EQUIPAMENTOS DE PONTA</p>
+                    </div>
+                </div>
+
+                <div class="gal-item-2 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop" alt="Ambiente de Treino" class="gal-img">
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; z-index: 3;">
+                        <p style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 900;">DESIGN URBANO</p>
+                    </div>
+                </div>
+
+                <div class="gal-item-3 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" alt="Foco e Treino" class="gal-img">
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; z-index: 3;">
+                        <p style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 900;">DISCIPLINA</p>
+                    </div>
+                </div>
+
+                <div class="gal-item-4 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000&auto=format&fit=crop" alt="Musculação Avançada" class="gal-img">
+                    <div style="position: absolute; bottom: 2rem; left: 2rem; z-index: 3;">
+                        <p style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900;">ESPAÇO AMPLO & EXCLUSIVO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HIGHLIGHT ROOFTOP (TRANSIÇÃO 3D) -->
+    <section class="rooftop-experience-section" id="rooftop">
+        <div class="container">
+            <div class="rooftop-stage">
+                <div>
+                    <span class="badge-tag" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">DESTAQUE EXCLUSIVO</span>
+                    <h2 class="rooftop-big-title">
+                        TREINO COM<br>
+                        OUTRA VISTA.
+                    </h2>
+                    <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 300; line-height: 1.8; margin-bottom: 2.5rem;">
+                        O Rooftop da FIT.TIME integra o ar livre à sua rotina de treino. Um espaço pensado para elevar sua experiência e proporcionar momentos únicos no coração de Curitiba.
+                    </p>
+                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Rooftop%20da%20FIT.TIME." target="_blank" class="btn-cta-primary">
+                        AGENDAR VISITA AO ROOFTOP
+                    </a>
+                </div>
+
+                <div class="rooftop-img-frame glass-panel">
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop" alt="Rooftop FIT.TIME Curitiba">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALIDADES ASSIMÉTRICAS -->
+    <section class="modalities-section" id="modalidades">
+        <div class="container">
+            <span class="badge-tag">MÚLTIPLAS MODALIDADES</span>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase;">
+                MODALIDADES DE ALTO RENDIMENTO.
+            </h2>
+
+            <div class="modality-asymmetric-wrapper">
+                
+                <!-- Card 1: Musculação -->
+                <div class="mod-card-1 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop" alt="Musculação" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="mod-content">
+                        <h3 class="mod-title">MUSCULAÇÃO</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Biomecânica superior para hipertrofia e força máxima.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Pilates -->
+                <div class="mod-card-2 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=800&auto=format&fit=crop" alt="Pilates" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="mod-content">
+                        <h3 class="mod-title">PILATES</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Controle do core, mobilidade e consciência corporal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Muay Thai -->
+                <div class="mod-card-3 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1517637382994-f02da38c6718?q=80&w=800&auto=format&fit=crop" alt="Muay Thai" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="mod-content">
+                        <h3 class="mod-title">MUAY THAI</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Intensidade, técnica de combate e condicionamento extremo.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Exercícios Aeróbicos -->
+                <div class="mod-card-4 glass-panel glass-card-hover" style="position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=800&auto=format&fit=crop" alt="Exercícios Aeróbicos" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div class="mod-content">
+                        <h3 class="mod-title">AERÓBICOS</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Equipamentos cardiovasculares de última geração.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FLEXIBILIDADE DE HORÁRIO -->
+    <section class="schedule-section">
+        <div class="container" style="text-align: center;">
+            <span class="badge-tag">FLEXIBILIDADE ABSOLUTA</span>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase;">
+                SEU HORÁRIO.<br>SEU TREINO.
+            </h2>
+            <p style="color: var(--text-muted); font-size: 1.15rem; font-weight: 300; max-width: 600px; margin: 1rem auto 0 auto;">
+                A FIT.TIME se adapta à sua rotina. Horários amplos para você manter a consistência em qualquer dia da semana.
+            </p>
+
+            <div class="digital-clock-display">
+                <i class="far fa-clock"></i> <span id="clockTick">24H VIP ACCESS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO HORIZONTAL SCROLL -->
+    <div class="horizontal-scroll-container">
+        <div class="horizontal-track" id="horizontalTrack">
+            <div class="horizon-card glass-panel">
+                <span style="font-size: 0.8rem; color: var(--primary-orange); font-weight: 800;">01 / PILAR</span>
+                <div class="horizon-word">FORÇA</div>
+            </div>
+            <div class="horizon-card glass-panel">
+                <span style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 800;">02 / PILAR</span>
+                <div class="horizon-word">TREINO</div>
+            </div>
+            <div class="horizon-card glass-panel">
+                <span style="font-size: 0.8rem; color: var(--primary-orange); font-weight: 800;">03 / PILAR</span>
+                <div class="horizon-word">PERFORMANCE</div>
+            </div>
+            <div class="horizon-card glass-panel">
+                <span style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 800;">04 / PILAR</span>
+                <div class="horizon-word">DISCIPLINA</div>
+            </div>
+            <div class="horizon-card glass-panel">
+                <span style="font-size: 0.8rem; color: var(--primary-orange); font-weight: 800;">05 / PILAR</span>
+                <div class="horizon-word">EVOLUÇÃO</div>
+            </div>
         </div>
     </div>
 
-    <!-- SEÇÃO ESPELHADA 1: O MANIFESTO -->
-    <section class="mirror-section" id="experiencia">
-        <div class="container">
-            <div class="mirror-grid">
-                <div>
-                    <span class="section-tag">NÃO É SÓ SOBRE TREINAR</span>
-                    <h2 class="section-heading-big">
-                        É sobre onde você escolhe evoluir.
-                    </h2>
-                    <p class="section-desc">
-                        Na FIT.TIME, cada detalhe foi arquitetado para entregar uma atmosfera completamente distante das academias convencionais. Iluminação precisa, arquitetura urbana e o foco total na sua performance.
-                    </p>
-                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20conhecer%20a%20FIT.TIME." target="_blank" class="btn-tech">
-                        CONHECER A ACADEMIA
-                    </a>
-                </div>
-
-                <!-- Cards Flutuantes em Grade Assimétrica -->
-                <div class="cards-floating-grid">
-                    <div class="card-tech-item glass-card">
-                        <span class="num">01</span>
-                        <h3>24 HORAS</h3>
-                        <p>Treine no horário que funciona para a sua rotina, sem restrições.</p>
-                    </div>
-
-                    <div class="card-tech-item glass-card" style="margin-top: 2rem;">
-                        <span class="num">02</span>
-                        <h3>EQUIPAMENTOS</h3>
-                        <p>Estrutura de alta performance preparada para treinos sérios.</p>
-                    </div>
-
-                    <div class="card-tech-item glass-card">
-                        <span class="num">03</span>
-                        <h3>AMBIENTE VIP</h3>
-                        <p>Design moderno para quem busca fugir do padrão comum.</p>
-                    </div>
-
-                    <div class="card-tech-item glass-card" style="margin-top: 2rem;">
-                        <span class="num">04</span>
-                        <h3>ROOFTOP</h3>
-                        <p>Um espaço ao ar livre exclusivo para elevar a sua experiência.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO ESPELHADA REVERSA 2: ESTRUTURA SHOWCASE -->
-    <section class="mirror-section" id="estrutura" style="background: rgba(9, 11, 16, 0.5);">
-        <div class="container">
-            <div class="mirror-grid reverse">
-                <div>
-                    <span class="section-tag">ESTRUTURA DE ALTO PADRÃO</span>
-                    <h2 class="section-heading-big">
-                        Seu treino merece um ambiente à altura.
-                    </h2>
-                    <p class="section-desc">
-                        Mais do que aparelhos de musculação, a FIT.TIME oferece um ecossistema completo pensado para potencializar cada repetição.
-                    </p>
-                    <div class="glass-card" style="padding: 1.8rem; display: inline-block;">
-                        <p style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 800;">CENTRO DE CURITIBA</p>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.3rem;">Rua Visconde de Nácar, 1322</p>
-                    </div>
-                </div>
-
-                <div>
-                    <div style="position: relative;">
-                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" alt="Equipamentos FIT.TIME" class="glass-card" style="width: 100%; height: 480px; object-fit: cover;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO ESPELHADA 3: ROOFTOP EXCLUSIVO -->
-    <section class="mirror-section" id="rooftop">
-        <div class="container">
-            <div class="mirror-grid">
-                <div>
-                    <span class="section-tag">DIFERENCIAL EXCLUSIVO</span>
-                    <h2 class="section-heading-big">
-                        Treinar diferente também está no topo.
-                    </h2>
-                    <p class="section-desc">
-                        Um ambiente no Rooftop projetado para complementar a experiência FIT.TIME. Alterne a atmosfera do treino e curta um espaço único no Centro de Curitiba.
-                    </p>
-                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Rooftop." target="_blank" class="btn-tech">
-                        AGENDAR VISITA
-                    </a>
-                </div>
-
-                <div>
-                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop" alt="Rooftop FIT.TIME" class="glass-card" style="width: 100%; height: 450px; object-fit: cover;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DISPLAY GIGANTE 24H -->
-    <section class="display-24h-wrapper">
-        <div class="container">
-            <span class="section-tag">LIBERDADE SEM LIMITES</span>
-            <h2 class="section-heading-big">Seu horário. Seu treino.</h2>
-            <p style="color: var(--text-secondary); font-weight: 300;">Com a FIT.TIME, sua rotina não precisa se adaptar à academia.</p>
-
-            <div class="big-number-screen">24H</div>
-
-            <p style="font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.15em;">TREINE QUANDO QUISER.</p>
-        </div>
-    </section>
-
-    <!-- PLANOS E CONVERÇÃO -->
-    <section class="mirror-section" id="planos">
-        <div class="container">
-            <div class="price-box-floating glass-card">
-                <span class="section-tag">INVESTIMENTO SIMPLES</span>
-                <h2 class="section-heading-big" style="margin-bottom: 0.5rem;">Escolha o seu ritmo.</h2>
-                <p style="color: var(--text-secondary); font-weight: 300;">Acesso VIP à estrutura completa da FIT.TIME 24H.</p>
-
-                <div class="price-tag-big">
-                    <span style="font-size: 1.2rem; color: var(--text-secondary); font-family: var(--font-main); font-weight: 400;">A PARTIR DE</span><br>
-                    R$ 118,00
-                </div>
-
-                <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-weight: 300;">
-                    Fale com a nossa equipe no WhatsApp para descobrir a modalidade ideal para o seu objetivo.
-                </p>
-
-                <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20saber%20os%20detalhes%20dos%20planos." target="_blank" class="btn-tech">
-                    QUERO SABER DOS PLANOS
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- LOCALIZAÇÃO & INSTAGRAM -->
-    <section class="mirror-section" style="background: rgba(9, 11, 16, 0.5);">
-        <div class="container">
-            <div class="mirror-grid">
-                <div>
-                    <span class="section-tag">LOCALIZAÇÃO E COMUNIDADE</span>
-                    <h2 class="section-heading-big">No Centro de Curitiba.</h2>
-                    <p style="color: var(--text-primary); font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">
-                        <i class="fas fa-location-dot" style="color: var(--accent-neon); margin-right: 0.5rem;"></i>
-                        Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR
-                    </p>
-                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">CEP: 80410-201</p>
-
-                    <div style="display: flex; gap: 1.5rem; margin-bottom: 2.5rem;">
-                        <div class="glass-card" style="padding: 1.2rem 1.8rem;">
-                            <p style="font-size: 0.75rem; color: var(--accent-neon); font-weight: 800;">INSTAGRAM</p>
-                            <p style="font-family: var(--font-display); font-size: 1.5rem; font-weight: 800;">+4.597</p>
-                            <p style="font-size: 0.75rem; color: var(--text-secondary);">@academia_fit.time_24h_vip</p>
-                        </div>
-                    </div>
-
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="https://maps.google.com/?q=Rua+Visconde+de+Nácar,+1322+-+Centro,+Curitiba+-+PR" target="_blank" class="btn-tech" style="background: transparent; color: #fff; border: 1px solid var(--bg-card-border);">
-                            COMO CHEGAR
-                        </a>
-                        <a href="https://www.instagram.com/academia_fit.time_24h_vip/" target="_blank" class="btn-tech" style="background: transparent; color: #fff; border: 1px solid var(--bg-card-border);">
-                            VER INSTAGRAM
-                        </a>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="glass-card" style="height: 380px; overflow: hidden;">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.22416954238!2d-49.2785!3d-25.4312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce471d2b5b5b5%3A0x0!2sRua+Visconde+de+N%C3%A1car%2C+1322+-+Centro%2C+Curitiba+-+PR!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ ACCORDION TECH -->
-    <section class="mirror-section" id="faq">
+    <!-- PLANOS PREMIUM -->
+    <section class="plans-section" id="planos">
         <div class="container">
             <div style="text-align: center;">
-                <span class="section-tag">ESCLARECIMENTOS</span>
-                <h2 class="section-heading-big">Perguntas Frequentes</h2>
+                <span class="badge-tag">ACESSO EXCLUSIVO</span>
+                <h2 style="font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; text-transform: uppercase;">
+                    ESCOLHA O SEU PLANO.
+                </h2>
             </div>
 
-            <div class="faq-accordion-tech">
-                <div class="faq-card glass-card">
-                    <div class="faq-header-flex">
-                        <span>A FIT.TIME funciona 24 horas?</span>
-                        <i class="fas fa-plus" style="color: var(--accent-neon);"></i>
+            <div class="plans-grid">
+                
+                <!-- Plano Essencial -->
+                <div class="plan-card-premium glass-panel">
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 800; letter-spacing: 0.15em;">MODALIDADE</span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;">ESSENCIAL</h3>
+                        <div class="plan-price">R$ 118<span style="font-size: 1.2rem; color: var(--text-muted); font-weight: 400;">/mês</span></div>
+                        <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem; line-height: 2.2;">
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Acesso à Musculação</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Equipamentos de Alta Performance</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Localização Centro Curitiba</li>
+                        </ul>
                     </div>
-                    <div class="faq-body-content">
-                        Sim! A FIT.TIME funciona 24 horas por dia, permitindo que você ajuste seus treinos ao seu ritmo diário.
-                    </div>
+                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20no%20Plano%20Essencial." target="_blank" class="btn-cta-secondary" style="margin-top: 2.5rem; justify-content: center;">
+                        QUERO COMEÇAR
+                    </a>
                 </div>
 
-                <div class="faq-card glass-card">
-                    <div class="faq-header-flex">
-                        <span>Onde a academia fica localizada?</span>
-                        <i class="fas fa-plus" style="color: var(--accent-neon);"></i>
+                <!-- Plano VIP (Featured) -->
+                <div class="plan-card-premium glass-panel featured">
+                    <span style="position: absolute; top: -12px; right: 20px; background: var(--primary-orange); color: #fff; font-size: 0.7rem; font-weight: 900; padding: 0.3rem 0.8rem; border-radius: 20px;">MAIS PROCURADO</span>
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--primary-orange); font-weight: 800; letter-spacing: 0.15em;">MODALIDADE</span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;">VIP ROOFTOP</h3>
+                        <div class="plan-price">R$ 148<span style="font-size: 1.2rem; color: var(--text-muted); font-weight: 400;">/mês</span></div>
+                        <ul style="list-style: none; color: #fff; font-size: 0.95rem; line-height: 2.2;">
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Acesso Completo à Musculação</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Acesso Exclusivo ao Rooftop</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Aeróbicos & Área Funcional</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Horários Amplos e Flexíveis</li>
+                        </ul>
                     </div>
-                    <div class="faq-body-content">
-                        Estamos na Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR (CEP 80410-201).
-                    </div>
+                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20no%20Plano%20VIP." target="_blank" class="btn-cta-primary" style="margin-top: 2.5rem; justify-content: center;">
+                        QUERO COMEÇAR
+                    </a>
                 </div>
 
-                <div class="faq-card glass-card">
-                    <div class="faq-header-flex">
-                        <span>Quanto custam os planos?</span>
-                        <i class="fas fa-plus" style="color: var(--accent-neon);"></i>
+                <!-- Plano Performance -->
+                <div class="plan-card-premium glass-panel">
+                    <div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 800; letter-spacing: 0.15em;">MODALIDADE</span>
+                        <h3 style="font-family: var(--font-display); font-size: 1.8rem; font-weight: 900; margin-top: 0.5rem;">PERFORMANCE</h3>
+                        <div class="plan-price">R$ 188<span style="font-size: 1.2rem; color: var(--text-muted); font-weight: 400;">/mês</span></div>
+                        <ul style="list-style: none; color: var(--text-muted); font-size: 0.95rem; line-height: 2.2;">
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Musculação + Pilates + Muay Thai</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Acesso Total ao Rooftop</li>
+                            <li><i class="fas fa-check" style="color: var(--primary-orange);"></i> Acompanhamento de Treino</li>
+                        </ul>
                     </div>
-                    <div class="faq-body-content">
-                        Temos planos a partir de R$ 118,00. Mande uma mensagem no WhatsApp para saber os detalhes completos.
-                    </div>
+                    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20no%20Plano%20Performance." target="_blank" class="btn-cta-secondary" style="margin-top: 2.5rem; justify-content: center;">
+                        QUERO COMEÇAR
+                    </a>
                 </div>
 
-                <div class="faq-card glass-card">
-                    <div class="faq-header-flex">
-                        <span>Como faço para conhecer a estrutura?</span>
-                        <i class="fas fa-plus" style="color: var(--accent-neon);"></i>
-                    </div>
-                    <div class="faq-body-content">
-                        Entre em contato pelo nosso WhatsApp para falar diretamente com a equipe e agendar a sua visita presencial.
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section style="padding: 10rem 0; text-align: center; position: relative;">
+    <!-- CTA FINAL CINEMATOGRÁFICO -->
+    <section class="cta-final-section">
         <div class="container">
-            <span class="section-tag">COMECE AGORA</span>
-            <h2 class="section-heading-big" style="font-size: clamp(2.8rem, 6vw, 5rem);">Seu próximo treino começa aqui.</h2>
-            <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 3rem auto; font-weight: 300;">
-                Descubra uma nova experiência de treino no Centro de Curitiba.
-            </p>
-            <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-tech">
-                QUERO TREINAR <i class="fas fa-arrow-right"></i>
+            <span class="badge-tag">SEU PRÓXIMO PASSO</span>
+            <h2 class="cta-big-headline">
+                SEU PRÓXIMO<br>
+                NÍVEL COMEÇA<br>
+                <span style="color: var(--primary-orange); text-shadow: 0 0 50px var(--primary-orange-glow);">AQUI.</span>
+            </h2>
+            <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn-cta-primary" style="padding: 1.2rem 3rem; font-size: 1rem;">
+                QUERO TREINAR NA FIT.TIME <i class="fas fa-arrow-right"></i>
             </a>
         </div>
     </section>
 
-    <!-- FOOTER TECH -->
-    <footer class="footer-tech">
+    <!-- FOOTER -->
+    <footer style="padding: 4rem 0; border-top: 1px solid var(--border-glass); background: #020304; font-size: 0.85rem; color: var(--text-muted);">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
             <div>
-                <a href="#" class="logo-tech">FIT.TIME <span>VIP</span></a>
-                <p style="margin-top: 0.5rem;">Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR</p>
+                <a href="#" class="brand-logo">FIT.TIME <div class="dot"></div></a>
+                <p style="margin-top: 0.5rem;">Rua Visconde de Nácar, 1322 — Centro, Curitiba / PR</p>
             </div>
-            <p>&copy; 2026 ACADEMIA FIT.TIME. Todos os direitos reservados.</p>
+            <p>&copy; 2026 FIT.TIME. Todos os direitos reservados. Spatial Digital Gym Experience.</p>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT ACCORDION -->
+    <!-- JAVASCRIPT: REAÇÃO INTERATIVA, CURSOR 3D & SCROLL EFFECTS -->
     <script>
-        const faqCards = document.querySelectorAll('.faq-card');
-        faqCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const isActive = card.classList.contains('active');
-                faqCards.forEach(c => c.classList.remove('active'));
-                
-                if (!isActive) {
-                    card.classList.add('active');
-                }
+        // Header Capsule Scroll Reaction
+        const mainHeader = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        // Efeito de Mouse Parallax 3D no Hero
+        const heroScene = document.getElementById('heroScene');
+        const heroImg = document.getElementById('heroImg');
+        const floatNodes = document.querySelectorAll('.float-node');
+
+        if (window.innerWidth > 1024) {
+            window.addEventListener('mousemove', (e) => {
+                const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+                heroImg.style.transform = `translate(-50%, -50%) rotateY(${mouseX * 8}deg) rotateX(${-mouseY * 8}deg)`;
+
+                floatNodes.forEach(node => {
+                    const speed = parseFloat(node.getAttribute('data-speed')) || 0.05;
+                    const x = mouseX * speed * 300;
+                    const y = mouseY * speed * 300;
+                    node.style.transform = `translate3d(${x}px, ${y}px, 40px) rotateY(${mouseX * 12}deg)`;
+                });
             });
+        }
+
+        // Scroll Reveal para o Impact Statement Tipográfico
+        const statementSpans = document.querySelectorAll('#scrollStatement span');
+        window.addEventListener('scroll', () => {
+            const statementSection = document.getElementById('scrollStatement');
+            const rect = statementSection.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.75) {
+                statementSpans.forEach((span, index) => {
+                    setTimeout(() => {
+                        span.classList.add('active');
+                    }, index * 120);
+                });
+            }
+        });
+
+        // Horizontal Track Scroll Reaction
+        const horizontalTrack = document.getElementById('horizontalTrack');
+        window.addEventListener('scroll', () => {
+            const container = document.querySelector('.horizontal-scroll-container');
+            const rect = container.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const percentage = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                const moveX = percentage * -400;
+                horizontalTrack.style.transform = `translateX(${moveX}px)`;
+            }
         });
     </script>
 </body>
