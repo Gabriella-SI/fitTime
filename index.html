@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academia FIT.TIME 24H VIP no Centro de Curitiba - PR. Treino 24 horas, equipamentos de qualidade, ambiente exclusivo e Rooftop. Planos a partir de R$ 118,00.">
+    <title>Academia FIT.TIME — 24H VIP no Centro de Curitiba</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. VARIÁVEIS E BASE
+           ========================================================================== */
+        :root {
+            --bg-black: #08090b;
+            --bg-dark: #0e1014;
+            --bg-card: #14171d;
+            --text-white: #ffffff;
+            --text-muted: #8e95a2;
+            --accent-blue: #2563eb;
+            --accent-glow: rgba(37, 99, 235, 0.3);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --font-heading: 'Syne', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --max-width: 1280px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .studio-border-b {
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .studio-border-t {
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* ==========================================================================
+           2. BOTÕES E COMPONENTES
+           ========================================================================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 2px;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--text-white);
+            color: var(--bg-black);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-blue);
+            color: var(--text-white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--accent-glow);
+        }
+
+        .btn-outline {
+            border-color: var(--border-subtle);
+            color: var(--text-white);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-white);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #ffffff;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1eb854;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 58px;
+            height: 58px;
+            background-color: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: #1eb854;
+        }
+
+        /* ==========================================================================
+           3. HEADER
+           ========================================================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 1.5rem 0;
+        }
+
+        .header.scrolled {
+            background: rgba(8, 9, 11, 0.88);
+            backdrop-filter: blur(12px);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--text-white);
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--text-white);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-white);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           4. HERO SECTION
+           ========================================================================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            overflow: hidden;
+            background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 50%);
+        }
+
+        .hero-watermark {
+            position: absolute;
+            right: -5%;
+            bottom: -5%;
+            font-family: var(--font-heading);
+            font-size: clamp(12rem, 30vw, 32rem);
+            font-weight: 800;
+            line-height: 0.8;
+            color: rgba(255, 255, 255, 0.02);
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-blue);
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            padding: 0.4rem 0.8rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+            line-height: 1.02;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            color: var(--accent-blue);
+        }
+
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .hero-price-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .hero-price-badge strong {
+            color: var(--text-white);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+        }
+
+        .hero-image-frame {
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 620px;
+            object-fit: cover;
+            filter: grayscale(20%) contrast(110%);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .hero-card-floating {
+            position: absolute;
+            bottom: -2rem;
+            left: -2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* ==========================================================================
+           5. BLOCO DE IMPACTO
+           ========================================================================== */
+        .impact-section {
+            padding: 8rem 0;
+            background-color: var(--bg-dark);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .impact-title {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        /* ==========================================================================
+           6. DIFERENCIAIS
+           ========================================================================== */
+        .differentials {
+            padding: 8rem 0;
+        }
+
+        .differentials-header {
+            margin-bottom: 5rem;
+        }
+
+        .diff-list {
+            display: flex;
+            flex-col: column;
+            divide-y: 1px solid var(--border-subtle);
+        }
+
+        .diff-item {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 0.15fr 0.45fr 0.4fr;
+            gap: 2rem;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .diff-item:hover {
+            background-color: rgba(255, 255, 255, 0.01);
+            padding-left: 1rem;
+        }
+
+        .diff-num {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .diff-title {
+            font-size: 1.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .diff-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           7. ESTRUTURA / SHOWCASE
+           ========================================================================== */
+        .showcase {
+            padding: 8rem 0;
+            background-color: var(--bg-dark);
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .showcase-img-1 {
+            grid-column: span 8;
+            height: 480px;
+            object-fit: cover;
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .showcase-img-2 {
+            grid-column: span 4;
+            height: 480px;
+            object-fit: cover;
+            width: 100%;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* ==========================================================================
+           8. ROOFTOP
+           ========================================================================== */
+        .rooftop {
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rooftop-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .rooftop-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-heading);
+            font-size: 20vw;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.015);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* ==========================================================================
+           9. 24 HORAS
+           ========================================================================== */
+        .hours-section {
+            padding: 8rem 0;
+            background-color: var(--bg-dark);
+            text-align: center;
+            position: relative;
+        }
+
+        .big-24h {
+            font-family: var(--font-heading);
+            font-size: clamp(8rem, 22vw, 24rem);
+            font-weight: 800;
+            line-height: 0.8;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+            margin: 2rem 0;
+            user-select: none;
+        }
+
+        /* ==========================================================================
+           10. PLANOS
+           ========================================================================== */
+        .plans {
+            padding: 8rem 0;
+        }
+
+        .plans-box {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-subtle);
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ==========================================================================
+           11. LOCALIZAÇÃO E INSTAGRAM
+           ========================================================================== */
+        .location {
+            padding: 8rem 0;
+            background-color: var(--bg-dark);
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 380px;
+            background: #181b22;
+            border: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           12. FAQ
+           ========================================================================== */
+        .faq {
+            padding: 8rem 0;
+        }
+
+        .faq-accordion {
+            max-width: 800px;
+            margin: 3rem auto 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 1.5rem 0;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 300;
+            margin-top: 1rem;
+            display: none;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* ==========================================================================
+           13. CTA FINAL & FOOTER
+           ========================================================================== */
+        .cta-final {
+            padding: 10rem 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-black) 0%, var(--bg-dark) 100%);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .footer {
+            padding: 4rem 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-grid {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        /* ==========================================================================
+           14. RESPONSIVIDADE (MOBILE FIRST)
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid, .impact-grid, .rooftop-grid, .location-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .diff-item {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .showcase-img-1, .showcase-img-2 {
+                grid-column: span 12;
+                height: 320px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--bg-black);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: var(--transition);
+                border-left: 1px solid var(--border-subtle);
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .hero-img {
+                height: 400px;
+            }
+
+            .hero-card-floating {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                margin-top: -2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP MOBILE -->
+    <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20FIT.TIME%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                FIT.TIME <span>VIP</span>
+            </a>
+
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#diferenciais" class="nav-link">A Academia</a></li>
+                <li><a href="#estrutura" class="nav-link">Estrutura</a></li>
+                <li><a href="#rooftop" class="nav-link">Rooftop</a></li>
+                <li><a href="#planos" class="nav-link">Planos</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+
+            <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn btn-primary" style="padding: 0.6rem 1.2rem; font-size: 0.75rem;">
+                QUERO TREINAR
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero studio-border-b" id="inicio">
+        <div class="hero-watermark">24H</div>
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <span class="eyebrow">
+                        <i class="fas fa-location-dot"></i> ACADEMIA FIT.TIME • CURITIBA
+                    </span>
+                    <h1 class="hero-title">
+                        Esqueça as academias comuns.<br>
+                        <span>Treine diferente.</span>
+                    </h1>
+                    <p class="hero-description">
+                        Um ambiente diferenciado, equipamentos de qualidade e uma experiência pensada para quem leva o treino a sério.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn btn-primary">
+                            QUERO TREINAR <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#diferenciais" class="btn btn-outline">
+                            CONHECER A ACADEMIA
+                        </a>
+                    </div>
+
+                    <div class="hero-price-badge">
+                        <span>Planos a partir de</span>
+                        <strong>R$ 118,00</strong>
+                    </div>
+                </div>
+
+                <div class="hero-image-frame">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop" alt="Equipamentos da Academia FIT.TIME" class="hero-img">
+                    <div class="hero-card-floating">
+                        <p style="font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--accent-blue); letter-spacing: 0.1em;">FUNCIONAMENTO</p>
+                        <p style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800;">24 HORAS VIP</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOCO DE IMPACTO -->
+    <section class="impact-section studio-border-b">
+        <div class="container">
+            <div class="impact-grid">
+                <div>
+                    <h2 class="impact-title">
+                        Não é só sobre treinar.<br>
+                        É sobre onde você escolhe treinar.
+                    </h2>
+                </div>
+                <div>
+                    <p class="impact-text">
+                        Na FIT.TIME, cada detalhe foi pensado para entregar uma experiência diferente das academias convencionais. Do ambiente urbano de alto padrão à exclusividade do Rooftop.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="differentials studio-border-b" id="diferenciais">
+        <div class="container">
+            <div class="differentials-header">
+                <span class="eyebrow">POSICIONAMENTO</span>
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem);">Por que FIT.TIME?</h2>
+            </div>
+
+            <div class="diff-list">
+                <div class="diff-item">
+                    <span class="diff-num">01</span>
+                    <h3 class="diff-title">24 HORAS</h3>
+                    <p class="diff-desc">Treine no horário que funciona para a sua rotina. Liberdade total de acesso sem restrições.</p>
+                </div>
+
+                <div class="diff-item">
+                    <span class="diff-num">02</span>
+                    <h3 class="diff-title">EQUIPAMENTOS DE QUALIDADE</h3>
+                    <p class="diff-desc">Estrutura de alta performance preparada para diferentes objetivos e níveis de treino rigoroso.</p>
+                </div>
+
+                <div class="diff-item">
+                    <span class="diff-num">03</span>
+                    <h3 class="diff-title">AMBIENTE DIFERENCIADO</h3>
+                    <p class="diff-desc">Design moderno, iluminação precisa e atmosfera focada para fugir do padrão das academias comuns.</p>
+                </div>
+
+                <div class="diff-item">
+                    <span class="diff-num">04</span>
+                    <h3 class="diff-title">ROOFTOP</h3>
+                    <p class="diff-desc">Um espaço exclusivo ao ar livre que faz parte e complementa a experiência FIT.TIME.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESTRUTURA / SHOWCASE -->
+    <section class="showcase studio-border-b" id="estrutura">
+        <div class="container">
+            <span class="eyebrow">ESTRUTURA & DESIGN</span>
+            <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-top: 0.5rem;">Seu treino merece um ambiente à altura.</h2>
+            <p style="color: var(--text-muted); font-weight: 300; max-width: 600px; margin-top: 1rem;">
+                Mais do que equipamentos, a FIT.TIME oferece um ambiente pensado para tornar sua experiência de treino mais completa.
+            </p>
+
+            <div class="showcase-grid">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" alt="Área de Musculação FIT.TIME" class="showcase-img-1">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1000&auto=format&fit=crop" alt="Treino Focado FIT.TIME" class="showcase-img-2">
+            </div>
+        </div>
+    </section>
+
+    <!-- ROOFTOP -->
+    <section class="rooftop studio-border-b" id="rooftop">
+        <div class="rooftop-bg-text">ROOFTOP</div>
+        <div class="container">
+            <div class="rooftop-grid">
+                <div>
+                    <span class="eyebrow">EXCLUSIVIDADE</span>
+                    <h2 style="font-size: clamp(2rem, 4vw, 3.2rem); margin-top: 0.5rem;">Treinar diferente também está nos detalhes.</h2>
+                    <p style="color: var(--text-muted); font-weight: 300; margin-top: 1.5rem; line-height: 1.8;">
+                        Um espaço diferenciado no topo para complementar a experiência FIT.TIME. Respire ar puro, mude a atmosfera e eleve o padrão da sua rotina fitness.
+                    </p>
+                    <div style="margin-top: 2.5rem;">
+                        <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20conhecer%20o%20Rooftop%20da%20FIT.TIME." target="_blank" class="btn btn-outline">
+                            CONHECER O ESPAÇO
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop" alt="Rooftop FIT.TIME" style="width: 100%; height: 500px; object-fit: cover; border: 1px solid var(--border-subtle);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 24 HORAS -->
+    <section class="hours-section studio-border-b">
+        <div class="container">
+            <span class="eyebrow">LIBERDADE TOTAL</span>
+            <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-top: 0.5rem;">Seu horário. Seu treino.</h2>
+            <p style="color: var(--text-muted); font-weight: 300;">Com a FIT.TIME, sua rotina não precisa se adaptar à academia.</p>
+
+            <div class="big-24h">24H</div>
+
+            <p style="font-family: var(--font-heading); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em;">Treine quando quiser.</p>
+        </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section class="plans studio-border-b" id="planos">
+        <div class="container">
+            <div class="plans-box">
+                <span class="eyebrow">INVISTA EM VOCÊ</span>
+                <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-top: 0.5rem;">Escolha seu ritmo.</h2>
+                <div style="margin: 2rem 0;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; block;">Planos a partir de</span>
+                    <span style="font-family: var(--font-heading); font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; color: var(--text-white);">R$ 118,00</span>
+                </div>
+                <p style="color: var(--text-muted); font-weight: 300; margin-bottom: 2.5rem; max-width: 480px;">
+                    Fale com nossa equipe pelo WhatsApp e descubra a modalidade de plano ideal para suas metas.
+                </p>
+                <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Gostaria%20de%20saber%20os%20detalhes%20dos%20planos." target="_blank" class="btn btn-primary">
+                    QUERO SABER DOS PLANOS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO & PROVA SOCIAL -->
+    <section class="location studio-border-b">
+        <div class="container">
+            <div class="location-grid">
+                <div>
+                    <span class="eyebrow">LOCALIZAÇÃO E PROVA SOCIAL</span>
+                    <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-top: 0.5rem;">Estamos no Centro de Curitiba.</h2>
+
+                    <div style="margin: 2rem 0; color: var(--text-muted); font-weight: 300; line-height: 1.8;">
+                        <p style="color: var(--text-white); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem;">
+                            <i class="fas fa-location-dot" style="color: var(--accent-blue); margin-right: 0.5rem;"></i>
+                            Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR
+                        </p>
+                        <p>CEP: 80410-201</p>
+                    </div>
+
+                    <!-- PROVA SOCIAL GOOGLE & INSTAGRAM -->
+                    <div style="display: flex; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                        <div style="background: var(--bg-black); border: 1px solid var(--border-subtle); padding: 1.25rem; min-width: 180px;">
+                            <div style="color: #ffc107; font-size: 0.85rem; margin-bottom: 0.25rem;">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <p style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">4,4 ★</p>
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">280 avaliações no Google</p>
+                        </div>
+
+                        <div style="background: var(--bg-black); border: 1px solid var(--border-subtle); padding: 1.25rem; min-width: 180px;">
+                            <p style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 800; text-transform: uppercase;">INSTAGRAM</p>
+                            <p style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;">+4.597</p>
+                            <p style="font-size: 0.75rem; color: var(--text-muted);">@academia_fit.time_24h_vip</p>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="https://maps.google.com/?q=Rua+Visconde+de+Nácar,+1322+-+Centro,+Curitiba+-+PR" target="_blank" class="btn btn-outline">
+                            COMO CHEGAR <i class="fas fa-diamond-turn-right"></i>
+                        </a>
+                        <a href="https://www.instagram.com/academia_fit.time_24h_vip/" target="_blank" class="btn btn-outline">
+                            VER INSTAGRAM <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="map-placeholder">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3603.22416954238!2d-49.2785!3d-25.4312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce471d2b5b5b5%3A0x0!2sRua+Visconde+de+N%C3%A1car%2C+1322+-+Centro%2C+Curitiba+-+PR!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq studio-border-b" id="faq">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="eyebrow">DÚVIDAS FREQUENTES</span>
+                <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); margin-top: 0.5rem;">Perguntas Frequentes</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>A FIT.TIME funciona 24 horas?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Sim, a FIT.TIME funciona 24 horas por dia, permitindo que você treine no horário que melhor se adapta à sua rotina.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Onde a academia fica localizada?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Estamos localizados na Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR (CEP 80410-201).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quanto custam os planos?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Temos planos a partir de R$ 118,00. Entre em contato pelo WhatsApp para conferir todas as opções disponíveis para o seu perfil.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como posso conhecer a academia?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Você pode mandar uma mensagem diretamente no nosso WhatsApp para conversar com a equipe e agendar uma visita presencial.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como entro em contato?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Nosso contato principal é pelo WhatsApp (41) 99265-6986 ou pelo nosso perfil oficial no Instagram @academia_fit.time_24h_vip.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <div class="container">
+            <span class="eyebrow">COMECE HOJE</span>
+            <h2 style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin: 1rem 0;">Seu próximo treino começa aqui.</h2>
+            <p style="color: var(--text-muted); font-weight: 300; max-width: 550px; margin: 0 auto 2.5rem auto;">
+                Conheça a FIT.TIME e descubra uma nova experiência de academia no Centro de Curitiba.
+            </p>
+            <div style="margin-bottom: 2.5rem;">
+                <span style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; display: block;">Planos a partir de</span>
+                <span style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-white);">R$ 118,00</span>
+            </div>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Quero%20treinar%20na%20FIT.TIME." target="_blank" class="btn btn-primary">
+                    QUERO TREINAR <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="https://wa.me/5541992656986?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20a%20equipe." target="_blank" class="btn btn-whatsapp">
+                    FALAR NO WHATSAPP <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="#" class="logo">FIT.TIME <span>VIP</span></a>
+                <p style="margin-top: 0.5rem;">Rua Visconde de Nácar, 1322 — Centro, Curitiba — PR</p>
+            </div>
+
+            <div style="display: flex; gap: 2rem;">
+                <a href="#inicio" style="color: var(--text-muted);">Início</a>
+                <a href="#diferenciais" style="color: var(--text-muted);">A Academia</a>
+                <a href="#estrutura" style="color: var(--text-muted);">Estrutura</a>
+                <a href="#planos" style="color: var(--text-muted);">Planos</a>
+                <a href="#faq" style="color: var(--text-muted);">FAQ</a>
+            </div>
+
+            <div>
+                <p>&copy; 2026 ACADEMIA FIT.TIME. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Header background ao rolar a página
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fechar menu mobile ao clicar em link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => {
+                    i.classList.remove('active');
+                    const icon = i.querySelector('.faq-question i');
+                    if (icon) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    }
+                });
+
+                if (!isActive) {
+                    item.classList.add('active');
+                    const icon = item.querySelector('.faq-question i');
+                    if (icon) {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
